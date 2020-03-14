@@ -22,7 +22,7 @@
   }
 
   //commands
-  const COMMAND_ROLL = 'roll'
+  const COMMAND_ROLL = 'infect'
 
   $gameChatInput.addEventListener('keydown', ({key}) => {
     if (key !== 'Enter') {
@@ -33,9 +33,17 @@
       const cmd = msg.substr(1)
       switch (cmd) {
         case COMMAND_ROLL:
+          infect();
           break
         default:
       }
     }
   })
+  function infect() {
+    var players = document.querySelectorAll('.lobbyAvatarNameContainer');
+    var random = Math.floor(Math.random() * players.length);
+    gameChat.$chatInputField.val("The infected is: @" + players[random].innerText.trim());
+    gameChat.sendMessage();
+}
 })()
+
