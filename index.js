@@ -39,11 +39,20 @@
       }
     }
   })
-  function infect() {
-    var players = document.querySelectorAll('.lobbyAvatarNameContainer');
-    var random = Math.floor(Math.random() * players.length);
-    gameChat.$chatInputField.val("The infected is: @" + players[random].innerText.trim());
-    gameChat.sendMessage();
-}
-})()
+  let lastInfectedPlayer = "";
 
+  function infect() {
+    const $players = document.querySelectorAll('.lobbyAvatarNameContainer');
+    let playerNames = [];
+    for (const $player of $players) {
+      const name = $player.innerText.trim();
+      if (name !== lastInfectedPlayer) {
+        playerNames.push(name);
+      }
+    }
+    const random = Math.floor(Math.random() * playerNames.length);
+    lastInfectedPlayer = playerNames[random];
+    gameChat.$chatInputField.val("The infected is: @" + lastInfectedPlayer);
+    gameChat.sendMessage();
+  }
+})()
