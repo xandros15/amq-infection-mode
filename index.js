@@ -33,26 +33,26 @@
       const cmd = msg.substr(1)
       switch (cmd) {
         case COMMAND_ROLL:
-          infect();
+          infect()
           break
         default:
       }
     }
   })
-  let lastInfectedPlayer = "";
+  let lastInfectedPlayer = ''
 
-  function infect() {
-    const $players = document.querySelectorAll('.lobbyAvatarNameContainer');
-    let playerNames = [];
+  function infect () {
+    const $players = document.querySelectorAll('.lobbyAvatarNameContainer')
+    let playerNames = []
     for (const $player of $players) {
-      const name = $player.innerText.trim();
+      const name = $player.innerText.trim()
       if (name !== lastInfectedPlayer) {
-        playerNames.push(name);
+        playerNames.push(name)
       }
     }
-    const random = Math.floor(Math.random() * playerNames.length);
-    lastInfectedPlayer = playerNames[random];
-    gameChat.$chatInputField.val("The infected is: @" + lastInfectedPlayer);
-    gameChat.sendMessage();
+    const random = Math.floor(Math.random() * playerNames.length)
+    lastInfectedPlayer = playerNames[random]
+    gameChat.$chatInputField.val('The infected is: @' + lastInfectedPlayer)
+    gameChat.sendMessage()
   }
 })()
