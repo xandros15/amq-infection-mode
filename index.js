@@ -46,12 +46,11 @@
     let playerNames = []
     for (const $player of $players) {
       const name = $player.innerText.trim()
-      if (name !== lastInfectedPlayer) {
-        playerNames.push(name)
-      }
+      playerNames.push(name)
     }
-    const random = Math.floor(Math.random() * playerNames.length)
-    lastInfectedPlayer = playerNames[random]
+    const playersThatCanBeInfected = playerNames.filter(name => lastInfectedPlayer !== name)
+    const random = Math.floor(Math.random() * playersThatCanBeInfected.length)
+    lastInfectedPlayer = playersThatCanBeInfected[random]
     gameChat.$chatInputField.val('The infected is: @' + lastInfectedPlayer)
     gameChat.sendMessage()
   }
